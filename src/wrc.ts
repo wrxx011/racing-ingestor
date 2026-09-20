@@ -36,7 +36,7 @@ function getItinerayData($) {
   const scheduleHeader = $('div.faq-layout-view__header > cosmos-text-14-3-3')
 
   // regexes for extracting the data
-  const regexVersionNumber = new RegExp(/(?<=Version\sV)\d+/gmi)
+  const regexVersionNumber = new RegExp(/(?<=Version\s)V?\d+(\.\d+)*/gm)
   const regexScheduleDate = new RegExp(/(?<=V\d\s)\d+.\d+.\d+/gmi)
   const regexTimezone = new RegExp(/(?<=All\sTimes\s)\w*\s[-+]\d+/gmi)
 
@@ -46,7 +46,7 @@ function getItinerayData($) {
   const schedTZ = scheduleHeader.text().match(regexTimezone) || [""]
 
   return {
-    version: Number(schedVersion[0]),
+    version: schedVersion[0],
     itinerayDate: schedDate[0],
     timezone: schedTZ[0]
   }
