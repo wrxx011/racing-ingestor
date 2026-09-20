@@ -12,7 +12,7 @@ async function loadWebsite(url: URL) {
 
 export async function scrapeSchedule(url: string) {
   const cheerioRoot = await loadWebsite(new URL(url));
-  const itinerayData = getItinerayData(cheerioRoot);
+  let itinerayData = getItinerayData(cheerioRoot);
   const noDays = getAmountOfDays(cheerioRoot);
   let days: day[] = [];
 
@@ -20,9 +20,10 @@ export async function scrapeSchedule(url: string) {
     days.push(fetchDay(i, cheerioRoot));
   }
 
-  itinerayData["days"] = days;
+  const parsedItinerayData = { ...itinerayData, days }
+  
 
-  return itinerayData;
+  return parsedItinerayData;
 }
 
 function getItinerayData($) {
