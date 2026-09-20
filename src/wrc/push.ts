@@ -1,5 +1,5 @@
 import { scrapeSchedule } from "./scrape";
-import { sql, SQL } from "bun";
+import { sql } from "bun";
 import { formatISO } from "date-fns";
 
 async function pushDataToDB(url: string) {
