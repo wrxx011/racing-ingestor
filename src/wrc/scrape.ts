@@ -87,8 +87,12 @@ function fetchDay(indexOfDay: number, $) {
 
   // regex for extracting the stages data
   const regexTime = new RegExp(/^\d{2}:\d{2}/);
-  const regexStageNumber = new RegExp(/(shakedown|SS\d+|SSS\d+)/i);
-  const regexStageName = new RegExp(/(?<=(?:Shakedown.|SSS?\d+)[\s-]+(?=\w)).+?(?=\s*\()/gi);
+  const regexStageNumber = new RegExp(
+    /(ceremonial\sstart|shakedown|SS\d+|SSS\d+)/i,
+  );
+  const regexStageName = new RegExp(
+    /(?<=(?:Shakedown.|SSS?\d+)[\s-]+(?=\w)).+?(?=\s*\()/gi,
+  );
   const regexStageLen = new RegExp(/\d{1,2}\.\d{1,2}/gim);
 
   // extract the data on each element in the array
